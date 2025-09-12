@@ -1,3 +1,3 @@
 # PeekIndustries
 
-Placeholder voor misschien ooit iets cool! In ieder geval vast naam en site geclaimed!
+Placeholder voor misschien ooit iets cools! In ieder geval vast naam en site geclaimed!
