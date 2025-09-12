@@ -91,6 +91,7 @@
 
     /* CSS keyframe-based animated ellipsis (no JS) */
     .dots {
+      font-size: 9pt;
       display: inline-block;
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       overflow: hidden;
@@ -100,5 +101,5 @@
     }
     @keyframes dots-reveal {
       0% { width: 0ch; }
-      100% { width: 3ch; }
+      100% { width: 4ch; }
     }
