@@ -88,3 +88,17 @@
 
     footer { margin-top: 36px; font-size: 12px; color: #9ca3af; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
     footer a { color: inherit; }
+
+    /* CSS keyframe-based animated ellipsis (no JS) */
+    .dots {
+      display: inline-block;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      overflow: hidden;
+      width: 0ch;
+      vertical-align: -1px;
+      animation: dots-reveal 1.8s steps(4, end) infinite;
+    }
+    @keyframes dots-reveal {
+      0% { width: 0ch; }
+      100% { width: 3ch; }
+    }
