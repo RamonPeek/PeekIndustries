@@ -172,18 +172,4 @@ function resolveComponent(item) {
 </script>
 
 <style scoped>
-/* Timeline visuals */
-.timeline-line {
-  position: absolute;
-  top: 0;
-  left: 12px; /* aligns with .timeline-dot */
-  width: 2px;
-  height: 100%;
-}
-
-.timeline-dot {
-  width: 14px;
-  height: 14px;
-  border-radius: 9999px;
-}
 </style>
