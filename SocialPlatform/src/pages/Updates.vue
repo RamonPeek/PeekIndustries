@@ -1,15 +1,17 @@
 <template>
-  <section class="max-w-4xl mx-auto">
+  <section class="max-w-4xl mx-auto mt-6">
+
+    <StatusStepper class="mb-10 mt-8"/>
     <!-- Header / Actions -->
-    <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between mb-8">
-      <div>
-        <h1 class="text-3xl font-semibold">Company Timeline</h1>
-        <p class="text-gray-600">Releases, blog snapshots, and tweet-like notes from the team.</p>
+    <div class="mb-8">
+      <div class="mb-4">
+        <h1 class="text-3xl font-semibold">Company Updates</h1>
+        <p class="text-gray-600">Releases, blog-posts and updates from the team!</p>
       </div>
       <div class="flex flex-wrap items-center gap-3">
         <UInput v-model="q" placeholder="Search timeline…" icon="i-heroicons-magnifying-glass-20-solid" class="w-64" />
-        <USelect v-model="type" :options="typeOptions" placeholder="Type" class="w-40" />
-        <USelect v-model="sort" :options="sortOptions" class="w-40" />
+        <USelect v-model="type" :items="typeOptions" placeholder="Type" class="w-40" />
+        <USelect v-model="sort" :items="sortOptions" class="w-40" />
         <UButton icon="i-heroicons-arrow-path" variant="soft" @click="resetFilters">Reset</UButton>
       </div>
     </div>
@@ -44,7 +46,7 @@
 import { computed, ref } from 'vue'
 /**
  * Mock data — mix of types
- * type: 'post' | 'micro' | 'release'
+ * type: 'post' | 'announcement' | 'release'
  */
 const timeline = ref([
   {
@@ -71,7 +73,7 @@ const timeline = ref([
   },
   {
     id: 'm-hiring-note',
-    type: 'micro',
+    type: 'announcement',
     text: 'We\'re sketching the feature request flow. Thinking: public list → upvotes → status labels.',
     date: '2025-09-13T08:10:00Z',
     tags: ['roadmap'],
@@ -90,7 +92,7 @@ const timeline = ref([
   },
   {
     id: 'm-random',
-    type: 'micro',
+    type: 'announcement',
     text: 'Dark mode or light mode as default? Leaning towards system preference.',
     date: '2025-09-14T18:40:00Z',
     tags: ['design'],
@@ -104,9 +106,9 @@ const type = ref('all')
 const sort = ref('newest')
 const typeOptions = [
   { label: 'All types', value: 'all' },
-  { label: 'Releases', value: 'release' },
-  { label: 'Posts', value: 'post' },
-  { label: 'Micro', value: 'micro' }
+  { label: 'Blog Posts', value: 'post' },
+  { label: 'Announcements', value: 'announcement' },
+  { label: 'Releases', value: 'release' }
 ]
 const sortOptions = [
   { label: 'Newest first', value: 'newest' },
@@ -158,7 +160,8 @@ async function loadMore() {
 // Type → component mapping
 import ReleaseCard from '../components/timeline/ReleaseCard.vue'
 import PostCard from '../components/timeline/PostCard.vue'
-import MicroCard from '../components/timeline/MicroCard.vue'
+import MicroCard from '../components/timeline/AnnouncementCard.vue'
+import StatusStepper from '../components/timeline/StatusStepper.vue'
 
 const map = {
   release: ReleaseCard,
