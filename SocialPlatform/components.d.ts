@@ -8,16 +8,16 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    AnnouncementCard: typeof import('./src/components/timeline/AnnouncementCard.vue')['default']
-    Card: typeof import('./src/components/timeline/Card.vue')['default']
+    AnnouncementCard: typeof import('./src/components/updates/AnnouncementCard.vue')['default']
+    Card: typeof import('./src/components/updates/Card.vue')['default']
     Default: typeof import('./src/components/layout/Default.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
-    MicroCard: typeof import('./src/components/timeline/AnnouncementCard.vue')['default']
-    PostCard: typeof import('./src/components/timeline/PostCard.vue')['default']
-    ReleaseCard: typeof import('./src/components/timeline/ReleaseCard.vue')['default']
+    MicroCard: typeof import('./src/components/updates/AnnouncementCard.vue')['default']
+    PostCard: typeof import('./src/components/updates/PostCard.vue')['default']
+    ReleaseCard: typeof import('./src/components/updates/ReleaseCard.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    StatusStepper: typeof import('./src/components/timeline/StatusStepper.vue')['default']
+    StatusStepper: typeof import('./src/components/updates/StatusStepper.vue')['default']
     UApp: typeof import('./node_modules/@nuxt/ui/dist/runtime/components/App.vue')['default']
     UAvatar: typeof import('./node_modules/@nuxt/ui/dist/runtime/components/Avatar.vue')['default']
     UBadge: typeof import('./node_modules/@nuxt/ui/dist/runtime/components/Badge.vue')['default']

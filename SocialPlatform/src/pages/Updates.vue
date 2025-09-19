@@ -9,22 +9,22 @@
         <p class="text-gray-600">Releases, blog-posts and updates from the team!</p>
       </div>
       <div class="flex flex-wrap items-center gap-3">
-        <UInput v-model="q" placeholder="Search timeline…" icon="i-heroicons-magnifying-glass-20-solid" class="w-64" />
+        <UInput v-model="q" placeholder="Search updates…" icon="i-heroicons-magnifying-glass-20-solid" class="w-64" />
         <USelect v-model="type" :items="typeOptions" placeholder="Type" class="w-40" />
         <USelect v-model="sort" :items="sortOptions" class="w-40" />
         <UButton icon="i-heroicons-arrow-path" variant="soft" @click="resetFilters">Reset</UButton>
       </div>
     </div>
 
-    <!-- Timeline -->
+    <!-- updates -->
     <div class="relative">
       <!-- vertical line -->
-    <div class="timeline-line bg-gray-200" aria-hidden="true"></div>
+    <div class="updates-line bg-gray-200" aria-hidden="true"></div>
 
       <ul class="space-y-6">
         <li v-for="item in paged" :key="item.id" class="relative flex gap-4">
           <!-- Dot -->
-            <div class="timeline-dot mt-2 bg-blue-600 ring-2 ring-blue-200"></div>
+            <div class="updates-dot mt-2 bg-blue-600 ring-2 ring-blue-200"></div>
 
           <!-- Card by type -->
           <component :is="resolveComponent(item)" :item="item" />
@@ -32,7 +32,7 @@
       </ul>
 
       <div v-if="paged.length === 0" class="text-center py-20 text-gray-500">
-        No timeline entries match your filters.
+        No updates entries match your filters.
       </div>
 
       <div class="mt-8 flex justify-center" v-if="hasMore">
@@ -48,16 +48,16 @@ import { computed, ref } from 'vue'
  * Mock data — mix of types
  * type: 'post' | 'announcement' | 'release'
  */
-const timeline = ref([
+const updates = ref([
   {
     id: 'r-0.1.0',
     type: 'release',
     title: 'Peek Social (alpha) — 0.1.0',
-    summary: 'First public preview with timeline feed, basic filters, and mock data.',
+    summary: 'First public preview with updates feed, basic filters, and mock data.',
     date: '2025-09-10T09:00:00Z',
     tags: ['release', 'alpha'],
     version: '0.1.0',
-    highlights: ['Timeline feed', 'Search + filters', 'Nuxt UI styling'],
+    highlights: ['updates feed', 'Search + filters', 'Nuxt UI styling'],
     author: { name: 'Ramon', avatar: 'https://i.pravatar.cc/80?img=12' }
   },
   {
@@ -67,7 +67,7 @@ const timeline = ref([
     summary: 'A quick look at component primitives, spacing scale, and tone.',
     date: '2025-09-12T14:25:00Z',
     tags: ['design', 'nuxt-ui'],
-    author: { name: 'Melissa', avatar: 'https://i.pravatar.cc/80?img=32' },
+    author: { name: 'TestAdmin', avatar: 'https://i.pravatar.cc/80?img=32' },
     link: '/blog/design-language-exploration',
     cover: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&q=60&auto=format'
   },
@@ -86,7 +86,7 @@ const timeline = ref([
     summary: 'Why we\'re building an open, community-driven product process.',
     date: '2025-09-01T10:00:00Z',
     tags: ['company'],
-    author: { name: 'Melissa', avatar: 'https://i.pravatar.cc/80?img=45' },
+    author: { name: 'TestAdmin', avatar: 'https://i.pravatar.cc/80?img=45' },
     link: '/blog/welcome',
     cover: 'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=1200&q=60&auto=format'
   },
@@ -96,7 +96,7 @@ const timeline = ref([
     text: 'Dark mode or light mode as default? Leaning towards system preference.',
     date: '2025-09-14T18:40:00Z',
     tags: ['design'],
-    author: { name: 'Melissa', avatar: 'https://i.pravatar.cc/80?img=23' }
+    author: { name: 'TestAdmin', avatar: 'https://i.pravatar.cc/80?img=23' }
   }
 ])
 
@@ -124,7 +124,7 @@ function resetFilters() {
 // Derived list
 const filtered = computed(() => {
   const term = q.value.toLowerCase().trim()
-  let out = timeline.value.filter((u) =>
+  let out = updates.value.filter((u) =>
     (type.value === 'all' || u.type === type.value) &&
     (!term ||
       (u.title && u.title.toLowerCase().includes(term)) ||
@@ -158,10 +158,10 @@ async function loadMore() {
 }
 
 // Type → component mapping
-import ReleaseCard from '../components/timeline/ReleaseCard.vue'
-import PostCard from '../components/timeline/PostCard.vue'
-import MicroCard from '../components/timeline/AnnouncementCard.vue'
-import StatusStepper from '../components/timeline/StatusStepper.vue'
+import ReleaseCard from '../components/updates/ReleaseCard.vue'
+import PostCard from '../components/updates/PostCard.vue'
+import MicroCard from '../components/updates/AnnouncementCard.vue'
+import StatusStepper from '../components/updates/StatusStepper.vue'
 
 const map = {
   release: ReleaseCard,

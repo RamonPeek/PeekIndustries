@@ -51,26 +51,37 @@
   </UCard>
 </template>
 
-<script setup>
-import { toRefs } from 'vue'
-
-const props = defineProps({
-  item: { type: Object, required: true }
-})
-const { item } = toRefs(props)
-
-function formatDate(iso) {
-  const d = new Date(iso)
-  return d.toLocaleString(undefined, {
-    year: 'numeric', month: 'short', day: '2-digit',
-    hour: '2-digit', minute: '2-digit'
-  })
-}
-
-async function copyVersion() {
-  try {
-    await navigator.clipboard.writeText(item.value?.version || '')
-  } catch {}
+<script>
+export default {
+  name: 'PostCard',
+  components: {},
+  props: {
+    item: { 
+      type: Object, 
+      required: true 
+    }
+  },
+  methods: {
+    formatDate(iso) {
+      const d = new Date(iso)
+      return d.toLocaleDateString(undefined, {
+        year: 'numeric', month: 'short', day: '2-digit',
+        hour: '2-digit', minute: '2-digit'
+      })
+    },
+    async copyVersion() {
+      try {
+        await navigator.clipboard.writeText(item.value?.version || '')
+      } catch {}
+    }
+  },
+  computed: {
+    readTime() {
+      const text = (this.item?.summary || '').trim()
+      const words = text ? text.split(/\s+/).length : 120 // assume 120 if unknown
+      return Math.max(1, Math.round(words / 200)) // 200 wpm
+    }
+  }
 }
 </script>
 

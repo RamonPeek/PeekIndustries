@@ -56,27 +56,33 @@
   </UCard>
 </template>
 
-<script setup>
-import { computed } from 'vue'
-
-const props = defineProps({
-  item: { type: Object, required: true }
-})
-
-function formatDate(iso) {
-  const d = new Date(iso)
-  return d.toLocaleString(undefined, {
-    year: 'numeric', month: 'short', day: '2-digit',
-    hour: '2-digit', minute: '2-digit'
-  })
+<script>
+export default {
+  name: 'PostCard',
+  components: {},
+  props: {
+    item: { 
+      type: Object, 
+      required: true 
+    }
+  },
+  methods: {
+    formatDate(iso) {
+      const d = new Date(iso)
+      return d.toLocaleDateString(undefined, {
+        year: 'numeric', month: 'short', day: '2-digit',
+        hour: '2-digit', minute: '2-digit'
+      })
+    }
+  },
+  computed: {
+    readTime() {
+      const text = (this.item?.summary || '').trim()
+      const words = text ? text.split(/\s+/).length : 120 // assume 120 if unknown
+      return Math.max(1, Math.round(words / 200)) // 200 wpm
+    }
+  }
 }
-
-// naive read time based on summary length
-const readTime = computed(() => {
-  const text = (props.item?.summary || '').trim()
-  const words = text ? text.split(/\s+/).length : 120 // assume 120 if unknown
-  return Math.max(1, Math.round(words / 200)) // 200 wpm
-})
 </script>
 
 <style scoped>

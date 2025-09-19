@@ -37,8 +37,10 @@ export default {
   name: 'AnnouncementCard',
   components: {},
   props: {
-    title: Object,
-    required: true
+    item: { 
+      type: Object, 
+      required: true 
+    }
   },
   methods: {
     formatDate(iso) {
