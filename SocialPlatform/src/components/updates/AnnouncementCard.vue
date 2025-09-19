@@ -32,17 +32,23 @@
   </UCard>
 </template>
 
-<script setup>
-const props = defineProps({
-  item: { type: Object, required: true }
-})
-
-function formatDate(iso) {
-  const d = new Date(iso)
-  return d.toLocaleDateString(undefined, {
-    year: 'numeric', month: 'short', day: '2-digit',
-    hour: '2-digit', minute: '2-digit'
-  })
+<script>
+export default {
+  name: 'AnnouncementCard',
+  components: {},
+  props: {
+    title: Object,
+    required: true
+  },
+  methods: {
+    formatDate(iso) {
+      const d = new Date(iso)
+      return d.toLocaleDateString(undefined, {
+        year: 'numeric', month: 'short', day: '2-digit',
+        hour: '2-digit', minute: '2-digit'
+      })
+    }
+  }
 }
 </script>
 
